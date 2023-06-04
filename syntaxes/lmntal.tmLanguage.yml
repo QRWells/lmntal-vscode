@@ -1,0 +1,11 @@
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: LMNtal
+patterns:
+  - include: '#keywords'
+repository:
+  keywords:
+    patterns:
+      - name: keyword.lmntal
+        match: \b(unary|int|float|ground)\b
+scopeName: source.lmn
+

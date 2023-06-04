@@ -1,0 +1,37 @@
+{
+  "name": "lmntal-vscode",
+  "displayName": "lmntal-vscode",
+  "description": "LMNtal language supports.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "lmntal",
+        "aliases": [
+          "LMNtal",
+          "lmntal"
+        ],
+        "extensions": [
+          "lmn"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lmntal",
+        "scopeName": "source.lmn",
+        "path": "./syntaxes/lmntal.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
