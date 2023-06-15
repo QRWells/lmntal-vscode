@@ -9,20 +9,75 @@
   "categories": [
     "Programming Languages"
   ],
+  "main": "./out/extension.js",
   "contributes": {
-    "views": {
-      "explorer": [
+    "viewsContainers": {
+      "activitybar": [
         {
-          "type": "webview",
-          "id": "lmntal.stateViewer",
-          "name": "LMNtal State Viewer"
+          "id": "lmntal-explorer",
+          "title": "LMNtal Explorer",
+          "icon": "resources/lmntal-explorer.svg"
         }
       ]
     },
-    "commands":[
+    "views": {
+      "lmntal-explorer": [
+        {
+          "id": "lmntal-outline",
+          "name": "Outline",
+          "type": "tree"
+        }
+      ]
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "lmntal.stateViewer",
+          "group": "navigation",
+          "when": "editorLangId == lmntal"
+        },
+        {
+          "command": "lmntal.visualizer",
+          "group": "navigation",
+          "when": "editorLangId == lmntal"
+        },
+        {
+          "command": "lmntal.ilViewer",
+          "group": "navigation",
+          "when": "editorLangId == lmntal"
+        },
+        {
+          "command": "lmntal.slim",
+          "group": "navigation",
+          "when": "editorLangId == lmntal"
+        }
+      ]
+    },
+    "commands": [
       {
-        "command": "lmntal.stateViewer.next",
-        "title": "next"
+        "command": "lmntal.stateViewer",
+        "title": "State Viewer",
+        "category": "LMNtal",
+        "enablement": "editorLangId == lmntal",
+        "icon": "resources/lmntal-explorer.svg"
+      },
+      {
+        "command": "lmntal.visualizer",
+        "title": "Visualizer",
+        "category": "LMNtal",
+        "enablement": "editorLangId == lmntal"
+      },
+      {
+        "command": "lmntal.ilViewer",
+        "title": "IL Viewer",
+        "category": "LMNtal",
+        "enablement": "editorLangId == lmntal"
+      },
+      {
+        "command": "lmntal.slim",
+        "title": "Slim",
+        "category": "LMNtal",
+        "enablement": "editorLangId == lmntal"
       }
     ],
     "languages": [
@@ -45,6 +100,12 @@
         "path": "./syntaxes/lmntal.tmLanguage.json"
       }
     ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "watch": "tsc -w -p ./"
   },
   "devDependencies": {
     "@types/vscode": "^1.73.0",
