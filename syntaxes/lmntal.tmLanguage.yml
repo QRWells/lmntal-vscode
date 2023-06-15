@@ -1,11 +1,27 @@
 $schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
 name: LMNtal
 patterns:
+  - include: '#storage'
   - include: '#keywords'
+  - include: '#entities'
 repository:
+  entities:
+    patterns:
+      - name: entity.name.function.lmntal
+        match: \b([a-zA-Z_][a-zA-Z0-9_]*)(?=@@)
+      - name: entity.name.context.lmntal
+        match: \b(?<=\$)([a-z][a-zA-Z0-9_]*)\b
+      - name: entity.name.atom.lmntal
+        match: \b([a-z][a-zA-Z0-9_]*)\b
   keywords:
     patterns:
-      - name: keyword.lmntal
+      - name: keyword.operator.lmntal
+        match: (\+|-|\*|=|@@)
+      - name: keyword.control.lmntal
+        match: (\||@@|:-)
+  storage:
+    patterns:
+      - name: storage.type.built-in.primitive.lmntal
         match: \b(unary|int|float|ground)\b
 scopeName: source.lmn
 

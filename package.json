@@ -10,6 +10,21 @@
     "Programming Languages"
   ],
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "lmntal.stateViewer",
+          "name": "LMNtal State Viewer"
+        }
+      ]
+    },
+    "commands":[
+      {
+        "command": "lmntal.stateViewer.next",
+        "title": "next"
+      }
+    ],
     "languages": [
       {
         "id": "lmntal",
@@ -32,6 +47,11 @@
     ]
   },
   "devDependencies": {
-    "js-yaml": "^4.1.0"
+    "@types/vscode": "^1.73.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.32.0",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.1.3"
   }
 }
