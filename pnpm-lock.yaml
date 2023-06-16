@@ -1,10 +1,36 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@types/node':
+    specifier: ^20.3.1
+    version: 20.3.1
+  cytoscape:
+    specifier: ^3.25.0
+    version: 3.25.0
+  cytoscape-dagre:
+    specifier: ^2.5.0
+    version: 2.5.0(cytoscape@3.25.0)
+  cytoscape-elk:
+    specifier: ^2.1.0
+    version: 2.1.0(cytoscape@3.25.0)
+  cytoscape-klay:
+    specifier: ^3.1.4
+    version: 3.1.4(cytoscape@3.25.0)
+
 devDependencies:
+  '@types/cytoscape':
+    specifier: ^3.19.9
+    version: 3.19.9
+  '@types/cytoscape-dagre':
+    specifier: ^2.3.0
+    version: 2.3.0
+  '@types/cytoscape-klay':
+    specifier: ^3.1.1
+    version: 3.1.1
   '@types/vscode':
     specifier: ^1.73.0
     version: 1.73.0
@@ -84,9 +110,29 @@ packages:
       fastq: 1.15.0
     dev: true
 
+  /@types/cytoscape-dagre@2.3.0:
+    resolution: {integrity: sha512-1WwDnCcdySVwhxhHWHxRFlWoz7InlXlA9O9gQjtBkk1Sf7hW0+uaRxS6nr1TLBSPZRX0QNpYGvGqh13NuFEDaA==}
+    dependencies:
+      '@types/cytoscape': 3.19.9
+    dev: true
+
+  /@types/cytoscape-klay@3.1.1:
+    resolution: {integrity: sha512-1k/w2DVVTCpOVbmkoM6ZtkMXQBnf+dGVoEEcaPyq0sq83KuIMf2Xssecd7BJ7Kp/sZlOpuyqh/wSjQDKd4J1hw==}
+    dependencies:
+      '@types/cytoscape': 3.19.9
+    dev: true
+
+  /@types/cytoscape@3.19.9:
+    resolution: {integrity: sha512-oqCx0ZGiBO0UESbjgq052vjDAy2X53lZpMrWqiweMpvVwKw/2IiYDdzPFK6+f4tMfdv9YKEM9raO5bAZc3UYBg==}
+    dev: true
+
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
     dev: true
+
+  /@types/node@20.3.1:
+    resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==}
+    dev: false
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
@@ -324,6 +370,48 @@ packages:
       which: 2.0.2
     dev: true
 
+  /cytoscape-dagre@2.5.0(cytoscape@3.25.0):
+    resolution: {integrity: sha512-VG2Knemmshop4kh5fpLO27rYcyUaaDkRw+6PiX4bstpB+QFt0p2oauMrsjVbUamGWQ6YNavh7x2em2uZlzV44g==}
+    peerDependencies:
+      cytoscape: ^3.2.22
+    dependencies:
+      cytoscape: 3.25.0
+      dagre: 0.8.5
+    dev: false
+
+  /cytoscape-elk@2.1.0(cytoscape@3.25.0):
+    resolution: {integrity: sha512-stkKoUTNOqpyP5eMuqatK0EYir2NWGTH+XlY0rxFj0t0HiQPGI4AuSuTPaGbNM1WhVfb0tWJ5TQQ0R0qshACLw==}
+    peerDependencies:
+      cytoscape: ^3.2.0
+    dependencies:
+      cytoscape: 3.25.0
+      elkjs: 0.8.2
+    dev: false
+
+  /cytoscape-klay@3.1.4(cytoscape@3.25.0):
+    resolution: {integrity: sha512-VwPj0VR25GPfy6qXVQRi/MYlZM/zkdvRhHlgqbM//lSvstgM6fhp3ik/uM8Wr8nlhskfqz/M1fIDmR6UckbS2A==}
+    peerDependencies:
+      cytoscape: ^3.2.0
+    dependencies:
+      cytoscape: 3.25.0
+      klayjs: 0.4.1
+    dev: false
+
+  /cytoscape@3.25.0:
+    resolution: {integrity: sha512-7MW3Iz57mCUo6JQCho6CmPBCbTlJr7LzyEtIkutG255HLVd4XuBg2I9BkTZLI/e4HoaOB/BiAzXuQybQ95+r9Q==}
+    engines: {node: '>=0.10'}
+    dependencies:
+      heap: 0.2.7
+      lodash: 4.17.21
+    dev: false
+
+  /dagre@0.8.5:
+    resolution: {integrity: sha512-/aTqmnRta7x7MCCpExk7HQL2O4owCT2h8NT//9I1OQ9vt29Pa0BzSAkR5lwFUcQ7491yVi/3CXU9jQ5o0Mn2Sw==}
+    dependencies:
+      graphlib: 2.1.8
+      lodash: 4.17.21
+    dev: false
+
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -353,6 +441,10 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /elkjs@0.8.2:
+    resolution: {integrity: sha512-L6uRgvZTH+4OF5NE/MBbzQx/WYpru1xCBE9respNj6qznEewGUIfhzmm7horWWxbNO2M0WckQypGctR8lH79xQ==}
+    dev: false
 
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
@@ -596,10 +688,20 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
+  /graphlib@2.1.8:
+    resolution: {integrity: sha512-jcLLfkpoVGmH7/InMC/1hIvOPSUh38oJtGhvrOFGzioE1DZ+0YW16RgmOJhHiuWTvGiJQ9Z1Ik43JvkRPRvE+A==}
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+
   /has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
     dev: true
+
+  /heap@0.2.7:
+    resolution: {integrity: sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg==}
+    dev: false
 
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
@@ -675,6 +777,10 @@ packages:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
 
+  /klayjs@0.4.1:
+    resolution: {integrity: sha512-WUNxuO7O79TEkxCj6OIaK5TJBkaWaR/IKNTakgV9PwDn+mrr63MLHed34AcE2yTaDntgO6l0zGFIzhcoTeroTA==}
+    dev: false
+
   /levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -693,6 +799,10 @@ packages:
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}

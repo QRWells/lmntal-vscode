@@ -31,6 +31,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/vscode", "npm:1.79.0"],\
             ["@typescript-eslint/eslint-plugin", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:5.59.11"],\
             ["@typescript-eslint/parser", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:5.59.11"],\
+            ["cytoscape", "npm:3.25.0"],\
+            ["cytoscape-dagre", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.5.0"],\
+            ["cytoscape-elk", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.1.0"],\
+            ["cytoscape-klay", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:3.1.4"],\
             ["eslint", "npm:8.42.0"],\
             ["js-yaml", "npm:4.1.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
@@ -566,6 +570,97 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["cytoscape", [\
+        ["npm:3.25.0", {\
+          "packageLocation": "./.yarn/cache/cytoscape-npm-3.25.0-73ca7c61ad-514ea396d9.zip/node_modules/cytoscape/",\
+          "packageDependencies": [\
+            ["cytoscape", "npm:3.25.0"],\
+            ["heap", "npm:0.2.7"],\
+            ["lodash", "npm:4.17.21"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["cytoscape-dagre", [\
+        ["npm:2.5.0", {\
+          "packageLocation": "./.yarn/cache/cytoscape-dagre-npm-2.5.0-bdf5b16bde-0a115b41c2.zip/node_modules/cytoscape-dagre/",\
+          "packageDependencies": [\
+            ["cytoscape-dagre", "npm:2.5.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.5.0", {\
+          "packageLocation": "./.yarn/__virtual__/cytoscape-dagre-virtual-943814bbf2/0/cache/cytoscape-dagre-npm-2.5.0-bdf5b16bde-0a115b41c2.zip/node_modules/cytoscape-dagre/",\
+          "packageDependencies": [\
+            ["cytoscape-dagre", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.5.0"],\
+            ["@types/cytoscape", null],\
+            ["cytoscape", "npm:3.25.0"],\
+            ["dagre", "npm:0.8.5"]\
+          ],\
+          "packagePeers": [\
+            "@types/cytoscape",\
+            "cytoscape"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["cytoscape-elk", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/cytoscape-elk-npm-2.1.0-52e7c6c625-6593047a2a.zip/node_modules/cytoscape-elk/",\
+          "packageDependencies": [\
+            ["cytoscape-elk", "npm:2.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/cytoscape-elk-virtual-ecb5e7e488/0/cache/cytoscape-elk-npm-2.1.0-52e7c6c625-6593047a2a.zip/node_modules/cytoscape-elk/",\
+          "packageDependencies": [\
+            ["cytoscape-elk", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.1.0"],\
+            ["@types/cytoscape", null],\
+            ["cytoscape", "npm:3.25.0"],\
+            ["elkjs", "npm:0.8.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/cytoscape",\
+            "cytoscape"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["cytoscape-klay", [\
+        ["npm:3.1.4", {\
+          "packageLocation": "./.yarn/cache/cytoscape-klay-npm-3.1.4-aee70fcd83-612fd0d7ee.zip/node_modules/cytoscape-klay/",\
+          "packageDependencies": [\
+            ["cytoscape-klay", "npm:3.1.4"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:3.1.4", {\
+          "packageLocation": "./.yarn/__virtual__/cytoscape-klay-virtual-35066a293e/0/cache/cytoscape-klay-npm-3.1.4-aee70fcd83-612fd0d7ee.zip/node_modules/cytoscape-klay/",\
+          "packageDependencies": [\
+            ["cytoscape-klay", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:3.1.4"],\
+            ["@types/cytoscape", null],\
+            ["cytoscape", "npm:3.25.0"],\
+            ["klayjs", "npm:0.4.1"]\
+          ],\
+          "packagePeers": [\
+            "@types/cytoscape",\
+            "cytoscape"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dagre", [\
+        ["npm:0.8.5", {\
+          "packageLocation": "./.yarn/cache/dagre-npm-0.8.5-f3eb4059c5-b9fabd4254.zip/node_modules/dagre/",\
+          "packageDependencies": [\
+            ["dagre", "npm:0.8.5"],\
+            ["graphlib", "npm:2.1.8"],\
+            ["lodash", "npm:4.17.21"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["debug", [\
         ["npm:4.3.4", {\
           "packageLocation": "./.yarn/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
@@ -614,6 +709,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["doctrine", "npm:3.0.0"],\
             ["esutils", "npm:2.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["elkjs", [\
+        ["npm:0.8.2", {\
+          "packageLocation": "./.yarn/cache/elkjs-npm-0.8.2-f1dfeff690-ed615c485f.zip/node_modules/elkjs/",\
+          "packageDependencies": [\
+            ["elkjs", "npm:0.8.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -948,11 +1052,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["graphlib", [\
+        ["npm:2.1.8", {\
+          "packageLocation": "./.yarn/cache/graphlib-npm-2.1.8-9fab334669-1e0db4dea1.zip/node_modules/graphlib/",\
+          "packageDependencies": [\
+            ["graphlib", "npm:2.1.8"],\
+            ["lodash", "npm:4.17.21"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["has-flag", [\
         ["npm:4.0.0", {\
           "packageLocation": "./.yarn/cache/has-flag-npm-4.0.0-32af9f0536-261a135703.zip/node_modules/has-flag/",\
           "packageDependencies": [\
             ["has-flag", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["heap", [\
+        ["npm:0.2.7", {\
+          "packageLocation": "./.yarn/cache/heap-npm-0.2.7-198a59506f-b0f3963a79.zip/node_modules/heap/",\
+          "packageDependencies": [\
+            ["heap", "npm:0.2.7"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1080,6 +1203,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["klayjs", [\
+        ["npm:0.4.1", {\
+          "packageLocation": "./.yarn/cache/klayjs-npm-0.4.1-c8b0ae121f-f57c872444.zip/node_modules/klayjs/",\
+          "packageDependencies": [\
+            ["klayjs", "npm:0.4.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["levn", [\
         ["npm:0.4.1", {\
           "packageLocation": "./.yarn/cache/levn-npm-0.4.1-d183b2d7bb-12c5021c85.zip/node_modules/levn/",\
@@ -1099,6 +1231,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/vscode", "npm:1.79.0"],\
             ["@typescript-eslint/eslint-plugin", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:5.59.11"],\
             ["@typescript-eslint/parser", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:5.59.11"],\
+            ["cytoscape", "npm:3.25.0"],\
+            ["cytoscape-dagre", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.5.0"],\
+            ["cytoscape-elk", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:2.1.0"],\
+            ["cytoscape-klay", "virtual:059e4c039d8dfc8e659419fb106c5ed32ae0179c9d5902a7be63cefd2f018af8de22013576e8a27d9a2b905096506d6bdc8682c66497c7763a478c3c0828d266#npm:3.1.4"],\
             ["eslint", "npm:8.42.0"],\
             ["js-yaml", "npm:4.1.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
@@ -1112,6 +1248,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["locate-path", "npm:6.0.0"],\
             ["p-locate", "npm:5.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash", [\
+        ["npm:4.17.21", {\
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
+          "packageDependencies": [\
+            ["lodash", "npm:4.17.21"]\
           ],\
           "linkType": "HARD"\
         }]\

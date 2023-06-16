@@ -1,0 +1,308 @@
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: il
+patterns:
+  - include: '#keywords'
+  - include: '#strings'
+  - include: '#entity'
+  - include: '#comments'
+  - include: '#instructions'
+repository:
+  keywords:
+    patterns:
+      - name: keyword.control.il
+        match: (atommatch|memmatch|guard|body)
+  strings:
+    name: string.quoted.double.il
+    begin: '"'
+    end: '"'
+    patterns:
+      - name: constant.character.escape.il
+        match: \\.
+  entity:
+    patterns:
+      - name: entity.name.tag
+        match: (@|L)\d*
+      - name: entity.other.inherited-class
+        match: >-
+          \b(Compiled Ruleset|Compiled Rule|Compiled Uniq Rule|Compiled
+          Subrule)\b
+  comments:
+    patterns:
+      - name: comment.block.il
+        begin: /\*
+        end: \*/
+        patterns:
+          - name: comment.block.documentation.il
+            match: \\.
+      - name: comment.line.il
+        patterns:
+          - name: comment.line.double-slash
+            match: (//|%|#).*
+  instructions:
+    patterns:
+      - name: reg
+        match: >-
+          (connectruntime|dequeueatom|enqueueatom|freeatom|freeground|ishlink|isint|isfloat|isstring|isintfunc|isfloatfunc|isstringfunc|isunary|isunaryfunc|newhlink|newlinklist|newset|allocset)(\s*\[\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+      - name: mem
+        match: >-
+          (allocmem|clearrules|dropmem|enqueueallatoms|enqueuemem|freemem|insertproxies|lock|norules|recursivelock|recursiveunlock|removeproxies|removetemporaryproxies|removetoplevelproxies|stable|unlockmem)(\s*\[\s*)(\d+)\s*\]
+      - name: 'uniq: list'
+        match: (uniq)(\s*\[\s*)(\[((\d*)\s*,\s*)*\s*(\d*)\s*\])\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+      - name: mem-reg
+        match: >-
+          (addatom|callback|getparent|testmem|unifyhlinks)(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '5':
+            name: variable.parameter.il
+      - name: reg-reg
+        match: >-
+          ((addatomset|addtolist|allocatomindirect|alterfuncindirect|deleteconnectors|eqatom|eqfunc|eqground|getclass|getclassfunc|getfunc|getnum|isbuddy|natomsindirect|neqatom|neqfunc|neqground|samefunc|subclass)|((i|f)(lt|le|gt|ge|eq|ne)(func)?))(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '8':
+            name: variable.parameter.il
+          '10':
+            name: variable.parameter.il
+      - name: reg-mem
+        match: (getruntime|removeatom|removeground)(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+      - name: reg-const
+        match: (natoms)(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.numeric.il
+      - name: mem-mem
+        match: >-
+          (addmem|copyrules|eqmem|movecells|neqmem|removemem)(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+      - name: mem-const
+        match: (nfreelinks|nmems)(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '5':
+            name: constant.numeric.il
+      - name: mem-string
+        match: (loadmodule|setmemname)(\s*\[\s*)(\d+)(,\s*)(.*)\s*\]
+        captures:
+          '5':
+            name: constant.character.escape.il
+      - name: reg-func
+        match: >-
+          (allocatom|alterfunc|func|loadfunc|notfunc)(\s*\[\s*)(\d+)(,\s*)((\d+_\d+)|('.*'_\d+))\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.character.escape.il
+      - name: reg-list
+        match: >-
+          (insertconnectorsinnull)(\s*\[\s*)(\d+)(,\s*)(\[((\d*)\s*,\s*)*\s*(\d*)\s*\])\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+      - name: 'spec: const-const'
+        match: (spec)(\s*\[\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '1':
+            name: entity.name.function.il
+          '3':
+            name: constant.numeric.il
+          '5':
+            name: constant.numeric.il
+      - name: reg-reg-reg
+        match: >-
+          (((i|f)((add|sub|mul|div|neg|mod|not|and|or|xor|sar|sal|shr)(func)?))|lookuplink)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '8':
+            name: variable.parameter.il
+          '10':
+            name: variable.parameter.il
+          '12':
+            name: variable.parameter.il
+      - name: reg-mem-reg
+        match: >-
+          (copyatom|neqatomindirect|newatomindirect)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '7':
+            name: variable.parameter.il
+      - name: reg-mem-mem
+        match: (copycells)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+      - name: reg-reg-mem
+        match: (unifylinks)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+      - name: reg-reg-const
+        match: >-
+          (alloclink|derefatom|dereffunc|dereflink|getfromlist|getlink)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+          '7':
+            name: constant.numeric.il
+      - name: reg-mem-func
+        match: >-
+          (findatom|newatom)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)((\d+_\d+)|('.*'_\d+))\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '7':
+            name: constant.character.escape.il
+      - name: reg-list-mem
+        match: >-
+          (insertconnectors)(\s*\[\s*)(\d+)(,\s*)(\[((\d*)\s*,\s*)*(\d*)\s*\])(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+      - name: reg-string-reg
+        match: (inline)(\s*\[\s*)(\d+)(,\s*)([^,]*)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.character.escape.il
+          '7':
+            name: variable.parameter.il
+      - name: mem-mem-const
+        match: (newmem)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '7':
+            name: constant.numeric.il
+      - name: mem-reg-string
+        match: (lockmem)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)([^,]*)\s*\]
+        captures:
+          '5':
+            name: variable.parameter.il
+          '7':
+            name: constant.character.escape.il
+      - name: reg-reg-reg-list
+        match: >-
+          (isground)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)([\.*])\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+          '7':
+            name: variable.parameter.il
+      - name: reg-reg-mem-list
+        match: (copyground)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)([\.*])\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+      - name: reg-reg-const-const
+        match: (deref)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: variable.parameter.il
+          '7':
+            name: constant.numeric.il
+          '9':
+            name: constant.numeric.il
+      - name: reg-const-const-mem
+        match: (inheritlink)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.numeric.il
+          '7':
+            name: variable.parameter.il
+      - name: mem-mem-reg-const
+        match: (newroot)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.numeric.il
+          '7':
+            name: variable.parameter.il
+      - name: mem-mem-mem-string
+        match: (anymem)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)([^\]]*)\s*\]
+        captures:
+          '9':
+            name: constant.character.escape.il
+      - name: label-list-list-list
+        match: >-
+          (jump|resetvars)(\s*\[\s*)(L\d*)(,\s*)(\[(\d+(\s*),(\s*))*\d*(\s*)\])(,\s*)(\[((\d+)\s*,\s*)*(\d*)\s*\])(,\s*)(\[((\d+)\s*,\s*)*(\d*)\s*\])\s*\]
+        captures:
+          '1':
+            name: entity.name.function.il
+          '3':
+            name: entity.name.tag.il
+          '11':
+            name: variable.parameter.il
+          '16':
+            name: variable.parameter.il
+      - name: 'subrule: reg-mem-string-list'
+        match: >-
+          (subrule)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)([^,]*)(,\s*)(\[((\d*)\s*,\s*)*(\d*)\s*\])\s*\]
+        captures:
+          '1':
+            name: entity.name.function.il
+          '3':
+            name: variable.parameter.il
+          '7':
+            name: constant.character.escape.il
+          '9':
+            name: variable.parameter.il
+      - name: reg-const-reg-const-mem
+        match: >-
+          (newlink|relink|unify)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.numeric.il
+          '7':
+            name: variable.parameter.il
+          '9':
+            name: constant.numeric.il
+      - name: reg-const-const-reg-const-const
+        match: >-
+          (findproccxt)(\s*\[\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)(,\s*)(\d+)\s*\]
+        captures:
+          '3':
+            name: variable.parameter.il
+          '5':
+            name: constant.numeric.il
+          '7':
+            name: constant.numeric.il
+          '9':
+            name: variable.parameter.il
+          '11':
+            name: constant.numeric.il
+          '13':
+            name: constant.numeric.il
+      - name: entity.name.function.il
+        match: (branch|commit|proceed|group|loop|not|run|spec|succreturn|failreturn)
+      - name: other
+        match: (builtin)
+      - name: not use
+        match: (getmem,systemrulesets)
+scopeName: source.il
+

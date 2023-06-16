@@ -378,6 +378,59 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cytoscape-dagre@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "cytoscape-dagre@npm:2.5.0"
+  dependencies:
+    dagre: ^0.8.5
+  peerDependencies:
+    cytoscape: ^3.2.22
+  checksum: 0a115b41c2b2123f14110281105547bb0718c2d1f3988f266096e5b6cbd693ae765d4c570de30844c5b0d0cc18ffe81d5fe74115928eb86a41378834b9b3edce
+  languageName: node
+  linkType: hard
+
+"cytoscape-elk@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "cytoscape-elk@npm:2.1.0"
+  dependencies:
+    elkjs: ^0.8.1
+  peerDependencies:
+    cytoscape: ^3.2.0
+  checksum: 6593047a2a3e4f20f9bfca94f3171de77bca9332cf5c5241f605f1dbdaa23d6c7b78a6576504a17d8cbd630e5c7d1267b2c9835b85101be597829f16f921e217
+  languageName: node
+  linkType: hard
+
+"cytoscape-klay@npm:^3.1.4":
+  version: 3.1.4
+  resolution: "cytoscape-klay@npm:3.1.4"
+  dependencies:
+    klayjs: ^0.4.1
+  peerDependencies:
+    cytoscape: ^3.2.0
+  checksum: 612fd0d7eee682171daf268f8b773c79b850a7ce79749fb6a22ceb3d284b347b6fe3b02b7473560f16753fb02550a42e5577a7410e6543bf4f23bf09aa7475a9
+  languageName: node
+  linkType: hard
+
+"cytoscape@npm:^3.25.0":
+  version: 3.25.0
+  resolution: "cytoscape@npm:3.25.0"
+  dependencies:
+    heap: ^0.2.6
+    lodash: ^4.17.21
+  checksum: 514ea396d90b16ffb6decff0ef1e790b9c35fbdfe3e842a56705d87e5d0a0ed78c94a5e7b66a93596245473868c46d4396886d940688e73a4d418701ac5caa34
+  languageName: node
+  linkType: hard
+
+"dagre@npm:^0.8.5":
+  version: 0.8.5
+  resolution: "dagre@npm:0.8.5"
+  dependencies:
+    graphlib: ^2.1.8
+    lodash: ^4.17.15
+  checksum: b9fabd425466d7b662381c2e457b1adda996bc4169aa60121d4de50250d83a6bb4b77d559e2f887c9c564caea781c2a377fd4de2a76c15f8f04ec3d086ca95f9
+  languageName: node
+  linkType: hard
+
 "debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -412,6 +465,13 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
+  languageName: node
+  linkType: hard
+
+"elkjs@npm:^0.8.1":
+  version: 0.8.2
+  resolution: "elkjs@npm:0.8.2"
+  checksum: ed615c485fa4ac1e858af509df24fdc9f61f2c6576df5f79f6a31c733fda69f235f53cd36af037aa9d2b8a935cb4f823fbd89d784b67f6e51be5100306ea1b39
   languageName: node
   linkType: hard
 
@@ -712,10 +772,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphlib@npm:^2.1.8":
+  version: 2.1.8
+  resolution: "graphlib@npm:2.1.8"
+  dependencies:
+    lodash: ^4.17.15
+  checksum: 1e0db4dea1c8187d59103d5582ecf32008845ebe2103959a51d22cb6dae495e81fb9263e22c922bca3aaecb56064a45cd53424e15a4626cfb5a0c52d0aff61a8
+  languageName: node
+  linkType: hard
+
 "has-flag@npm:^4.0.0":
   version: 4.0.0
   resolution: "has-flag@npm:4.0.0"
   checksum: 261a1357037ead75e338156b1f9452c016a37dcd3283a972a30d9e4a87441ba372c8b81f818cd0fbcd9c0354b4ae7e18b9e1afa1971164aef6d18c2b6095a8ad
+  languageName: node
+  linkType: hard
+
+"heap@npm:^0.2.6":
+  version: 0.2.7
+  resolution: "heap@npm:0.2.7"
+  checksum: b0f3963a799e02173f994c452921a777f2b895b710119df999736bfed7477235c2860c423d9aea18a9f3b3d065cb1114d605c208cfcb8d0ac550f97ec5d28cb0
   languageName: node
   linkType: hard
 
@@ -822,6 +898,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"klayjs@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "klayjs@npm:0.4.1"
+  checksum: f57c872444c5031318b8c83ff2d4ea0df190e16db6dff6c18acf7fbb9228f6b77126e52b5a9e873584aae16ee244349507a7f9a6ec9302ebb7f7490ea9d9cc32
+  languageName: node
+  linkType: hard
+
 "levn@npm:^0.4.1":
   version: 0.4.1
   resolution: "levn@npm:0.4.1"
@@ -839,6 +922,10 @@ __metadata:
     "@types/vscode": ^1.73.0
     "@typescript-eslint/eslint-plugin": ^5.48.2
     "@typescript-eslint/parser": ^5.48.2
+    cytoscape: ^3.25.0
+    cytoscape-dagre: ^2.5.0
+    cytoscape-elk: ^2.1.0
+    cytoscape-klay: ^3.1.4
     eslint: ^8.32.0
     js-yaml: ^4.1.0
     typescript: ^5.1.3
@@ -858,6 +945,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
   languageName: node
   linkType: hard
 
