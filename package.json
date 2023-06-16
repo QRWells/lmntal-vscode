@@ -26,6 +26,21 @@
           "id": "lmntal-outline",
           "name": "Outline",
           "type": "tree"
+        },
+        {
+          "id": "lmntal.slimControl",
+          "name": "Slim",
+          "type": "webview"
+        },
+        {
+          "id": "lmntal.stateViewerControl",
+          "name": "State Viewer Control",
+          "type": "webview"
+        },
+        {
+          "id": "lmntal.visualizerControl",
+          "name": "Visualizer Control",
+          "type": "webview"
         }
       ]
     },
@@ -139,6 +154,15 @@
           "type": "string",
           "default": "-O3",
           "description": "Options for the lmntal compiler."
+        },
+        "lmntal.fastRunArgs": {
+          "title": "Fast Run Options",
+          "type": "array",
+          "default": [
+            "--hl",
+            "--use-builtin-rule"
+          ],
+          "description": "Options for the fast run."
         }
       }
     }
@@ -150,21 +174,14 @@
     "watch": "tsc -w -p ./"
   },
   "devDependencies": {
-    "@types/cytoscape": "^3.19.9",
+    "@types/cytoscape": "^3.19.10",
     "@types/cytoscape-dagre": "^2.3.0",
     "@types/cytoscape-klay": "^3.1.1",
-    "@types/vscode": "^1.73.0",
     "@types/node": "^20.3.1",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
-    "eslint": "^8.32.0",
+    "@types/vscode": "^1.79.1",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
     "js-yaml": "^4.1.0",
     "typescript": "^5.1.3"
-  },
-  "dependencies": {
-    "cytoscape": "^3.25.0",
-    "cytoscape-dagre": "^2.5.0",
-    "cytoscape-elk": "^2.1.0",
-    "cytoscape-klay": "^3.1.4"
   }
 }

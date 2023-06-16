@@ -1,27 +1,29 @@
 import * as vscode from 'vscode';
 import { IlViewerProvider } from './views/il_provider';
+import { Slim } from './slim';
+import { StateViewerPanel } from './panels/state_viewer';
+import { VisualizerPanel } from './panels/visualizer';
 
 export function activate(context: vscode.ExtensionContext) {
     const ilScheme = 'lmntal-il';
 
+    // register state viewer
     context.subscriptions.push(
         vscode.commands.registerCommand('lmntal.stateViewer', () => {
-            const panel = vscode.window.createWebviewPanel(
-                'stateViewer',
-                'State Viewer',
-                vscode.ViewColumn.Two
-            );
-            panel.webview.html = ""
+            StateViewerPanel.render(context.extensionUri);
         }));
 
+    // register visualizer
     context.subscriptions.push(
-        vscode.commands.registerCommand('lmntal.visualizer', () => { }));
+        vscode.commands.registerCommand('lmntal.visualizer', () => {
+            VisualizerPanel.render(context.extensionUri);
+        }));
 
+    // register IL viewer
     context.subscriptions.push(
         vscode.workspace.registerTextDocumentContentProvider(ilScheme, new IlViewerProvider));
     context.subscriptions.push(
         vscode.commands.registerCommand('lmntal.ilViewer', async () => {
-            // get current document
             const editor = vscode.window.activeTextEditor;
             if (!editor) {
                 return;
@@ -35,6 +37,26 @@ export function activate(context: vscode.ExtensionContext) {
         })
     );
 
+    // register slim runner
     context.subscriptions.push(
-        vscode.commands.registerCommand('lmntal.slim', () => { }));
+        vscode.commands.registerCommand('lmntal.slim', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor) {
+                return;
+            }
+            const document = editor.document;
+            const uri = document.uri;
+            // TODO: run slim
+            const lmntal = vscode.workspace.getConfiguration("lmntal");
+            let args = lmntal.get<string[]>("fastRunArgs");
+            if (args === undefined) {
+                args = [];
+            }
+            let res = await Slim.run(uri, args);
+            if (res === undefined) {
+                vscode.window.showErrorMessage("Slim failed to run");
+                return;
+            }
+            vscode.window.showInformationMessage(res);
+        }));
 }

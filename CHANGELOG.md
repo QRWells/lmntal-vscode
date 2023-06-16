@@ -4,6 +4,10 @@ All notable changes to the "lmntal-vscode" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## 0.0.1
 
-- Initial release
+- Basic functions
+    - Syntax highlighting for both LMNtal and IL.
+    - IL Viewer
+    - State Viewer
+    - Execution Visualizer
