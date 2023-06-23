@@ -9,6 +9,9 @@
   "categories": [
     "Programming Languages"
   ],
+  "repository": {
+    "url": "https://github.com/QRWells/lmntal-vscode"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -178,7 +181,7 @@
     "@types/cytoscape-dagre": "^2.3.0",
     "@types/cytoscape-klay": "^3.1.1",
     "@types/node": "^20.3.1",
-    "@types/vscode": "^1.79.1",
+    "@types/vscode": "^1.75.0",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "js-yaml": "^4.1.0",
