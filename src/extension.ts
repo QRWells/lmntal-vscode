@@ -46,4 +46,6 @@ export function activate(context: vscode.ExtensionContext) {
             }
             vscode.window.showInformationMessage(res);
         }));
+
+    vscode.languages.registerDocumentFormattingEditProvider('lmntal', new LMNtalFormatter);
 }
