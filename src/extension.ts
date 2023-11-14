@@ -1,23 +1,10 @@
 import * as vscode from 'vscode';
 import { IlViewerProvider } from './views/il_provider';
 import { Slim } from './slim';
-import { StateViewerPanel } from './panels/state_viewer';
-import { VisualizerPanel } from './panels/visualizer';
+import { LMNtalFormatter } from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
     const ilScheme = 'lmntal-il';
-
-    // register state viewer
-    context.subscriptions.push(
-        vscode.commands.registerCommand('lmntal.stateViewer', () => {
-            StateViewerPanel.render(context.extensionUri);
-        }));
-
-    // register visualizer
-    context.subscriptions.push(
-        vscode.commands.registerCommand('lmntal.visualizer', () => {
-            VisualizerPanel.render(context.extensionUri);
-        }));
 
     // register IL viewer
     context.subscriptions.push(

@@ -2,7 +2,7 @@
   "name": "lmntal-vscode",
   "displayName": "lmntal-vscode",
   "description": "LMNtal language supports.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -34,31 +34,11 @@
           "id": "lmntal.slimControl",
           "name": "Slim",
           "type": "webview"
-        },
-        {
-          "id": "lmntal.stateViewerControl",
-          "name": "State Viewer Control",
-          "type": "webview"
-        },
-        {
-          "id": "lmntal.visualizerControl",
-          "name": "Visualizer Control",
-          "type": "webview"
         }
       ]
     },
     "menus": {
       "editor/title": [
-        {
-          "command": "lmntal.stateViewer",
-          "group": "navigation",
-          "when": "editorLangId == lmntal"
-        },
-        {
-          "command": "lmntal.visualizer",
-          "group": "navigation",
-          "when": "editorLangId == lmntal"
-        },
         {
           "command": "lmntal.ilViewer",
           "group": "navigation",
@@ -72,20 +52,6 @@
       ]
     },
     "commands": [
-      {
-        "command": "lmntal.stateViewer",
-        "title": "State Viewer",
-        "category": "LMNtal",
-        "enablement": "editorLangId == lmntal",
-        "icon": "$(graph-line)"
-      },
-      {
-        "command": "lmntal.visualizer",
-        "title": "Visualizer",
-        "category": "LMNtal",
-        "enablement": "editorLangId == lmntal",
-        "icon": "$(eye)"
-      },
       {
         "command": "lmntal.ilViewer",
         "title": "IL Viewer",
@@ -177,14 +143,11 @@
     "watch": "tsc -w -p ./"
   },
   "devDependencies": {
-    "@types/cytoscape": "^3.19.10",
-    "@types/cytoscape-dagre": "^2.3.0",
-    "@types/cytoscape-klay": "^3.1.1",
-    "@types/node": "^20.3.1",
-    "@types/vscode": "^1.75.0",
-    "@typescript-eslint/eslint-plugin": "^5.60.0",
-    "@typescript-eslint/parser": "^5.60.0",
+    "@types/node": "^20.9.0",
+    "@types/vscode": "^1.84.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "js-yaml": "^4.1.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.2.2"
   }
 }
