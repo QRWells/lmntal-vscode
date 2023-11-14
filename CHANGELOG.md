@@ -6,8 +6,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 0.0.1
 
-- Basic functions
-    - Syntax highlighting for both LMNtal and IL.
-    - IL Viewer
-    - State Viewer
-    - Execution Visualizer
+### Basic functions
+- Syntax highlighting for both LMNtal and IL.
+- IL Viewer
+- State Viewer
+- Execution Visualizer
+
+## 0.0.2
+
+### New Features
+
+- Code formatting for LMNtal.
+
+### Removed
+
+- State Viewer
+- Execution Visualizer

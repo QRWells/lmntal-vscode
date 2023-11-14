@@ -2,9 +2,20 @@
   "name": "lmntal-vscode",
   "displayName": "lmntal-vscode",
   "description": "LMNtal language supports.",
+  "author": {
+    "name": "QRWells",
+    "email": "wang@ueda.info.waseda.ac.jp",
+    "url": "https://github.com/QRWells"
+  },
+  "license": "MIT",
+  "keywords": [
+    "lmntal",
+    "formatter",
+    "highlighting"
+  ],
   "version": "0.0.2",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.84.1"
   },
   "categories": [
     "Programming Languages"

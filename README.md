@@ -5,9 +5,7 @@ Language support for LMNtal.
 ## Features
 
 - Syntax highlighting for both LMNtal and IL.
-- IL Viewer
-- State Viewer
-- Execution Visualizer
+- Code formatting for LMNtal.
 
 ## Get Started
 
