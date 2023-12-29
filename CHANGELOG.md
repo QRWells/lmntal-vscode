@@ -4,13 +4,11 @@ All notable changes to the "lmntal-vscode" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 0.0.1
+## 0.0.3
 
-### Basic functions
-- Syntax highlighting for both LMNtal and IL.
-- IL Viewer
-- State Viewer
-- Execution Visualizer
+### Changed
+
+- Change comment syntax from `%` to `//`.
 
 ## 0.0.2
 
@@ -20,5 +18,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Removed
 
+- State Viewer
+- Execution Visualizer
+
+## 0.0.1
+
+### Basic functions
+- Syntax highlighting for both LMNtal and IL.
+- IL Viewer
 - State Viewer
 - Execution Visualizer

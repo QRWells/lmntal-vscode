@@ -13,9 +13,9 @@
     "formatter",
     "highlighting"
   ],
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
-    "vscode": "^1.84.1"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Programming Languages"
@@ -154,11 +154,11 @@
     "watch": "tsc -w -p ./"
   },
   "devDependencies": {
-    "@types/node": "^20.9.0",
-    "@types/vscode": "^1.84.1",
+    "@types/node": "^20.10.5",
+    "@types/vscode": "^1.85.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "js-yaml": "^4.1.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   }
 }
