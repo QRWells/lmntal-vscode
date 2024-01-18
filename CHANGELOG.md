@@ -4,6 +4,12 @@ All notable changes to the "lmntal-vscode" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 0.0.4
+
+### Fixed
+
+- Keep `%` as a comment syntax.
+
 ## 0.0.3
 
 ### Changed

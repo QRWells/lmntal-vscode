@@ -7,13 +7,14 @@
     "email": "wang@ueda.info.waseda.ac.jp",
     "url": "https://github.com/QRWells"
   },
+  "publisher": "qr-ext",
   "license": "MIT",
   "keywords": [
     "lmntal",
     "formatter",
     "highlighting"
   ],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.85.0"
   },

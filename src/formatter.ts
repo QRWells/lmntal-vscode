@@ -14,7 +14,7 @@ export class LMNtalFormatter implements vscode.DocumentFormattingEditProvider {
         const linesContainsComment: Set<number> = new Set();
         for (let i = 0; i < document.lineCount; i++) {
             const line = document.lineAt(i);
-            if (line.text.startsWith('//') || line.text.startsWith('%')) {
+            if (line.text.startsWith('//')) {
                 linesContainsComment.add(i);
             }
             if (line.text.startsWith('/*')) {

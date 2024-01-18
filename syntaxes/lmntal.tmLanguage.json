@@ -116,11 +116,6 @@
           "name": "comment.line.double-slash.lmntal",
           "begin": "//",
           "end": "\\n"
-        },
-        {
-          "name": "comment.line.percetage.lmntal",
-          "begin": "%",
-          "end": "\\n"
         }
       ]
     },
