@@ -14,7 +14,7 @@
     "formatter",
     "highlighting"
   ],
-  "version": "0.0.4",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -77,6 +77,11 @@
         "category": "LMNtal",
         "enablement": "editorLangId == lmntal",
         "icon": "$(play)"
+      },
+      {
+        "category": "LMNtal",
+        "command": "lmntal.restartServer",
+        "title": "Restart LMNtal Language Server"
       }
     ],
     "languages": [
@@ -119,10 +124,19 @@
       "title": "LMNtal",
       "properties": {
         "lmntal.slimPath": {
-          "title": "Runtime Path",
+          "title": "SLIM Path",
           "type": "string",
           "default": "slim",
           "description": "Path to the slim executable."
+        },
+        "lmntal.slimArgs": {
+          "title": "Slim Execution Arguments",
+          "type": "array",
+          "default": [
+            "--hl",
+            "--use-builtin-rule"
+          ],
+          "description": "Arguments for quick run program."
         },
         "lmntal.compilerPath": {
           "title": "Compiler Path",
@@ -131,35 +145,60 @@
           "description": "Path to the lmntal compiler executable."
         },
         "lmntal.compilerArgs": {
-          "title": "Compiler Options",
+          "title": "Compiler Arguments",
           "type": "string",
           "default": "-O3",
-          "description": "Options for the lmntal compiler."
+          "description": "Arguments for the lmntal compiler."
         },
-        "lmntal.fastRunArgs": {
-          "title": "Fast Run Options",
-          "type": "array",
-          "default": [
-            "--hl",
-            "--use-builtin-rule"
+        "lmntal.serverPath": {
+          "type": [
+            "string",
+            "null"
           ],
-          "description": "Options for the fast run."
+          "default": null,
+          "description": "Set a custom path to a LMNtal LS binary.",
+          "scope": "window"
+        },
+        "lmntal.customArgs": {
+          "type": "array",
+          "description": "Additional arguments that should be passed to the LMNtal LS binary.",
+          "default": [],
+          "scope": "window"
+        },
+        "lmntal.checkForUpdates": {
+          "type": "boolean",
+          "description": "Check for updates to the LMNtal LS binary.",
+          "default": true,
+          "scope": "window"
         }
       }
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "pnpm run esbuild-base --minify",
     "compile": "tsc -p ./",
     "lint": "eslint \"src/**/*.ts\"",
-    "watch": "tsc -w -p ./"
+    "watch": "tsc -w -p ./",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
+    "esbuild": "pnpm run esbuild-base --sourcemap",
+    "esbuild-watch": "pnpm run esbuild-base --sourcemap --watch"
   },
   "devDependencies": {
-    "@types/node": "^20.10.5",
+    "@types/node": "^20.11.7",
     "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "esbuild": "0.20.1",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
     "js-yaml": "^4.1.0",
-    "typescript": "^5.3.3"
+    "typescript": "*"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "vscode-languageclient": "^9.0.1"
   }
 }

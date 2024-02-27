@@ -4,6 +4,18 @@ All notable changes to the "lmntal-vscode" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 0.1.0
+
+### New Features
+
+- Add Language Server Protocol support.
+    - Semantic highlighting
+    - Syntax check
+
+### Changed
+
+- Remove Code formatting for LMNtal.
+
 ## 0.0.4
 
 ### Fixed

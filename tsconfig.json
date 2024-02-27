@@ -1,19 +1,15 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es2020",
-		"lib": [
-			"es2020",
-			"DOM"
-		],
-		"outDir": "out",
-		"sourceMap": true,
-		"strict": true,
-		"rootDir": "src"
-	},
-	"exclude": [
-		"node_modules",
-		".vscode-test",
-		"state_view"
-	]
+  "compilerOptions": {
+    "composite": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "module": "CommonJS",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "outDir": "out",
+    "sourceMap": true,
+    "strict": true,
+    "rootDir": "src"
+  },
+  "exclude": ["node_modules", ".vscode-test"]
 }

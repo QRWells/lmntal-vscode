@@ -5,7 +5,9 @@ Language support for LMNtal.
 ## Features
 
 - Syntax highlighting for both LMNtal and IL.
-- Code formatting for LMNtal.
+- Language Server Protocol support for LMNtal.
+    - Syntax check
+    - Semantic highlighting
 
 ## Get Started
 
@@ -24,6 +26,7 @@ Language support for LMNtal.
 | Setting               | description                 |
 | --------------------- | --------------------------- |
 | `lmntal.slimPath`     | Path to LMNtal runtime      |
+| `lmntal.slimArgs`     | Options for LMNtal runtime  |
 | `lmntal.compilerPath` | Path to LMNtal compiler     |
 | `lmntal.compilerArgs` | Options for LMNtal compiler |
 
