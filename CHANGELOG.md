@@ -4,6 +4,12 @@ All notable changes to the "lmntal-vscode" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 0.1.1
+
+### Fixed
+
+- Wrong configuration type for `lmntal.compilerArgs` in `package.json`.
+
 ## 0.1.0
 
 ### New Features

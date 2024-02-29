@@ -63,10 +63,6 @@ export class LMNtalLanguageClient {
         await vscode.window.showErrorMessage(
           'Failed to initialize the extension'
         )
-      } else if (stateChangeEvent.newState === State.Running) {
-        await vscode.window.showInformationMessage(
-          'Extension initialized successfully!'
-        )
       }
     })
 
