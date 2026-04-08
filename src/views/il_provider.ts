@@ -6,15 +6,19 @@ export class IlViewerProvider implements vscode.TextDocumentContentProvider {
   onDidChangeEmitter = new vscode.EventEmitter<vscode.Uri>()
   onDidChange = this.onDidChangeEmitter.event
 
-  provideTextDocumentContent (uri: vscode.Uri): vscode.ProviderResult<string> {
-    const file = uri.path.replace(/\.[^\.]+$/, '.lmn')
-    const result = Compiler.compile(vscode.Uri.file(file))
-    // if rejected, show error message
-    result.catch(() => {
-      vscode.window.showErrorMessage(
-        'Error: Failed to compile. Please check the compiler settings.'
-      )
-    })
-    return result
+  async provideTextDocumentContent (uri: vscode.Uri): Promise<string> {
+    const file = uri.path.replace(/\.[^.]+$/, '.lmn')
+
+    try {
+      const result = await Compiler.compile(vscode.Uri.file(file))
+      return result ?? ''
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Failed to compile. Check the compiler settings.'
+      void vscode.window.showErrorMessage(message)
+      return message
+    }
   }
 }

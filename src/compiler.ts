@@ -1,69 +1,40 @@
-import * as vscode from 'vscode';
-import * as cp from "child_process";
+import * as vscode from 'vscode'
+import { getLmntalSettings } from './config'
+import { runProcess } from './process'
 
-export class Compiler {
-    static async compile(source: vscode.Uri): Promise<string | undefined> {
-        const lmntal = vscode.workspace.getConfiguration('lmntal');
-        const compilerPath = lmntal.get<string>('compilerPath');
-        const compilerArgs = lmntal.get<string>('compilerArgs');
-        // call if not undefined
-        if (compilerPath === undefined || compilerPath === '' || compilerArgs === undefined) {
-            vscode.window.showErrorMessage('Error: Compiler not found. Please set the path to the compiler in the settings.');
-            return undefined;
-        }
+function getCompilerPath (): string | undefined {
+  const { compilerPath } = getLmntalSettings()
 
-        const compiler = cp.spawn(compilerPath, [compilerArgs, source.fsPath]);
+  if (compilerPath.trim() === '') {
+    void vscode.window.showErrorMessage(
+      'Compiler not found. Set `lmntal.compilerPath` in the workspace settings.'
+    )
+    return undefined
+  }
 
-        return new Promise((resolve, reject) => {
-            let result = "";
-            compiler.stdout.on('data', (data) => {
-                result += data;
-            });
-            compiler.stderr.on('data', (data) => {
-                result += data;
-            });
-            compiler.on('error', (err) => {
-                reject(err);
-            });
-            compiler.on('close', (code) => {
-                if (code === 0) {
-                    resolve(result);
-                } else {
-                    reject(result);
-                }
-            });
-        });
+  return compilerPath
+}
+
+export const Compiler = {
+  async compile (source: vscode.Uri): Promise<string | undefined> {
+    const compilerPath = getCompilerPath()
+    if (compilerPath === undefined) {
+      return undefined
     }
 
-    static async compile_with_args(source: vscode.Uri, args: string[]): Promise<string | undefined> {
-        const lmntal = vscode.workspace.getConfiguration('lmntal');
-        const compilerPath = lmntal.get<string>('compilerPath');
-        // call if not undefined
-        if (compilerPath === undefined || compilerPath === '') {
-            vscode.window.showErrorMessage('Error: Compiler not found. Please set the path to the compiler in the settings.');
-            return undefined;
-        }
+    const { compilerArgs } = getLmntalSettings()
+    return await runProcess(compilerPath, [...compilerArgs, source.fsPath])
+  },
 
-        const compiler = cp.spawn(compilerPath, args.concat(source.fsPath));
-
-        return new Promise((resolve, reject) => {
-            let result = "";
-            compiler.stdout.on('data', (data) => {
-                result += data;
-            });
-            compiler.stderr.on('data', (data) => {
-                result += data;
-            });
-            compiler.on('error', (err) => {
-                reject(err);
-            });
-            compiler.on('close', (code) => {
-                if (code === 0) {
-                    resolve(result);
-                } else {
-                    reject(result);
-                }
-            });
-        });
+  async compileWithArgs (
+    source: vscode.Uri,
+    args: string[]
+  ): Promise<string | undefined> {
+    const compilerPath = getCompilerPath()
+    if (compilerPath === undefined) {
+      return undefined
     }
+
+    return await runProcess(compilerPath, [...args, source.fsPath])
+  }
 }

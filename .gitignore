@@ -2,4 +2,6 @@ node_modules
 *.vsix
 .yarn
 .pnpm
+.npm-cache
+*.tsbuildinfo
 out/

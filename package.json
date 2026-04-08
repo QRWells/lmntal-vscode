@@ -14,9 +14,9 @@
     "formatter",
     "highlighting"
   ],
-  "version": "0.1.1",
+  "version": "0.2.0",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
     "Programming Languages"
@@ -41,11 +41,6 @@
           "id": "lmntal-outline",
           "name": "Outline",
           "type": "tree"
-        },
-        {
-          "id": "lmntal.slimControl",
-          "name": "Slim",
-          "type": "webview"
         }
       ]
     },
@@ -177,30 +172,31 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run esbuild-base --minify",
+    "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -p ./",
     "lint": "eslint \"src/**/*.ts\"",
+    "test": "tsc -p ./ && node out/lmntal.test.js",
     "watch": "tsc -w -p ./",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
-    "esbuild": "pnpm run esbuild-base --sourcemap",
-    "esbuild-watch": "pnpm run esbuild-base --sourcemap --watch"
+    "esbuild": "tsc -p ./",
+    "esbuild-watch": "tsc -w -p ./"
   },
   "devDependencies": {
-    "@types/node": "^20.11.23",
-    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.19.39",
+    "@types/vscode": "^1.110.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "esbuild": "0.20.1",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1",
-    "js-yaml": "^4.1.0",
-    "typescript": "^5.3.3"
+    "eslint-plugin-promise": "^6.6.0",
+    "js-yaml": "^4.1.1",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",
     "vscode-languageclient": "^9.0.1"
-  }
+  },
+  "packageManager": "npm@10.9.2"
 }

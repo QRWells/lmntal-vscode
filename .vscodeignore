@@ -1,5 +1,10 @@
 .vscode/**
 .vscode-test/**
 .gitignore
+out/**/*.test.d.ts
+out/**/*.test.js
+out/**/*.test.js.map
+src/**/*.test.ts
 vsc-extension-quickstart.md
 state_view/
+node_modules/

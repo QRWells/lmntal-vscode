@@ -4,32 +4,42 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { outputChannel } from './extension'
-import { exec, type ExecException, spawn } from 'child_process'
+import { execFile, type ExecException, spawn } from 'child_process'
 import { stat } from 'fs/promises'
 import fetch, { AbortError } from 'node-fetch'
-import path, { join } from 'path'
+import { join } from 'path'
 import { promisify } from 'util'
 import { type Progress, ProgressLocation, window, workspace } from 'vscode'
+import { getLmntalSettings } from './config'
+import { resolveConfiguredServerPath } from './lmntal'
+
+interface CratesIoResponse {
+  crate?: {
+    max_version?: string
+  }
+}
 
 export async function findServer (): Promise<string | undefined> {
-  const path = await findServerPath()
+  const serverPath = await findServerPath()
 
-  if (path == null || !(await checkValidity(path))) {
+  if (serverPath == null || !(await checkValidity(serverPath))) {
     return undefined
   }
 
-  outputChannel.appendLine(`[ Info ] Using server path ${path}.`)
+  outputChannel.appendLine(`[ Info ] Using server path ${serverPath}.`)
 
-  const config = workspace.getConfiguration('lmntal')
-  const updateCheckerEnabled: boolean = config.get('checkForUpdates') ?? true
+  const settings = getLmntalSettings()
 
-  // use quotes around path because the path may have spaces in it
-  const currentVersion = await promisify(exec)(`"${path}" --version`).then(
-    (s) => s.stdout.trim().match(/[0-9]+\.[0-9]+\.[0-9]+/)?.[0] ?? 'unknown'
+  const currentVersion = await promisify(execFile)(serverPath, ['--version']).then(
+    ({ stdout }) =>
+      stdout
+        .toString()
+        .trim()
+        .match(/[0-9]+\.[0-9]+\.[0-9]+/)?.[0] ?? 'unknown'
   )
   outputChannel.appendLine(`[ Info ] Server version: v${currentVersion}`)
 
-  if (updateCheckerEnabled && config.get('serverPath') === null) {
+  if (settings.checkForUpdates && settings.serverPath === null) {
     outputChannel.appendLine('[ Info ] Checking for updates...')
 
     try {
@@ -40,17 +50,17 @@ export async function findServer (): Promise<string | undefined> {
       let res
 
       try {
-        res = await fetch(
+        const response = await fetch(
           'https://crates.io/api/v1/crates/lmntal-language-server',
           { signal: abortController.signal }
         )
-        res = await res.json()
+        res = (await response.json()) as CratesIoResponse
       } catch (e) {
         if (e instanceof AbortError) {
           outputChannel.appendLine(
-            '[ Error ] Update check timed out after 2000ms.'
+            '[ Error ] Update check timed out after 2500ms.'
           )
-          return path
+          return serverPath
         } else {
           throw e
         }
@@ -58,18 +68,15 @@ export async function findServer (): Promise<string | undefined> {
         clearTimeout(timeout)
       }
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      const latestVersion = res.crate.max_version as string
+      const latestVersion = res.crate?.max_version
 
-      if (currentVersion !== latestVersion) {
+      if (latestVersion != null && currentVersion !== latestVersion) {
         const choice = await window.showInformationMessage(
           `A new version of the LMNtal Language Server is available (v${currentVersion} --> v${latestVersion}). Would you like to update automatically?`,
-          {},
           'Yes'
         )
 
-        if (choice) {
+        if (choice === 'Yes') {
           if (!(await installBinaryViaCargoInstall())) {
             await window.showErrorMessage(
               'Failed to update LMNtal Language Server.'
@@ -82,24 +89,22 @@ export async function findServer (): Promise<string | undefined> {
     }
   }
 
-  return path
+  return serverPath
 }
 
 async function findServerPath (): Promise<string | undefined> {
-  const config = workspace.getConfiguration('lmntal')
+  const settings = getLmntalSettings()
+  const workspaceFolderPath = workspace.workspaceFolders?.[0]?.uri.fsPath
+  const configuredServerPath = resolveConfiguredServerPath(
+    settings.serverPath,
+    workspaceFolderPath
+  )
 
-  // Check for custom server path
-  if (config.get('serverPath') && workspace.workspaceFolders !== undefined) {
+  if (configuredServerPath !== undefined) {
     outputChannel.appendLine(
-      path.resolve(
-        workspace.workspaceFolders[0].uri.fsPath,
-        config.get('serverPath')!
-      )
+      `[ Info ] Trying configured server path ${configuredServerPath}...`
     )
-    return path.resolve(
-      workspace.workspaceFolders[0].uri.fsPath,
-      config.get('serverPath')!
-    )
+    return configuredServerPath
   }
 
   const cargoBinDirectory = getCargoBinDirectory()
@@ -118,11 +123,10 @@ async function findServerPath (): Promise<string | undefined> {
 
   const choice = await window.showWarningMessage(
     'Failed to find an installed LMNtal Language Server. Would you like to install one using `cargo install`?',
-    {},
     'Yes'
   )
 
-  if (!choice) {
+  if (choice !== 'Yes') {
     outputChannel.appendLine('[ Error ] Not installing server.')
     return undefined
   }
@@ -173,9 +177,9 @@ function getExpectedBinaryName (): string {
   }
 }
 
-async function checkValidity (path: string): Promise<boolean> {
+async function checkValidity (candidatePath: string): Promise<boolean> {
   try {
-    await stat(path)
+    await stat(candidatePath)
     return true
   } catch (_) {
     return false
@@ -211,8 +215,9 @@ async function installBinaryViaCargoInstall (): Promise<boolean> {
           logCargoInstallProgress(data.toString(), progress)
         })
 
-        const exitCode: number = await new Promise((resolve, _) => {
+        const exitCode: number = await new Promise((resolve, reject) => {
           process.on('close', resolve)
+          process.on('error', reject)
         })
 
         outputChannel.appendLine(
@@ -249,11 +254,6 @@ function logCargoInstallProgress (
 
   if (data === 'Updating crates.io index') {
     msg = 'updating crates.io index'
-  } else if (
-    data ===
-    'Updating git repository `https://github.com/QRWells/lmntal-language-server'
-  ) {
-    msg = 'fetching crate'
   } else if (data.startsWith('Compiling')) {
     msg = `compiling ${data.split('Compiling ')[1].split(versionRegex)[0]}`
   }
